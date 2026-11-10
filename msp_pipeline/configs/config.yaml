@@ -1,0 +1,39 @@
+# Example configuration for `mspdetect run` and `mspdetect metrics`.
+# Relative paths are relative to this file. Check it with `mspdetect check-config`.
+
+data:
+  root: /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised          # one sub-directory per patient
+  patients: null                   # null = all sub-directories; or [id1, id2]; or a .txt file
+  image: image                        # file name of the CT without .nii/.nii.gz
+  structures:                      # structure name -> file name without extension
+    GTVp: "GTVp"
+    Body: ["Body", "mask_BODY"]        # "Body" is used to mask out the couch
+    Mandible: ["Mandible", "mask_Mandible"]
+    Spinal_Cord: ["Spinal Cord", "mask_SpinalCord"]
+
+output: ../results
+n_jobs: 8                          # patients processed in parallel
+overwrite: false                   # true: recompute patients that already have results
+
+detection:
+  hu_range: [300, 2800]            # bone window
+  crop:
+    reference: GTVp                # null: use the whole scan (CT only)
+    slice_range: null              # [start, stop): explicit slices instead of a reference
+    mode: fixed_size               # margins | fixed_size
+    fixed_size: 20                 # half-window in slices (mode: fixed_size)
+    include_mandible: false
+    lateral_extent_mm: 80          # null: no shoulder cropping
+    pad: 30
+  optimizer:
+    azimuth_deg: [0, 8]           # [centre, half-width] of the grid search
+    polar_deg: [90, 8]
+    grid_steps: 10
+    n_starts: 10                    # >1: also optimise from the next-best grid points
+
+metrics:
+  output: ../metrics
+  structures: [GTVp, Body, Spinal_Cord, Mandible]   # left/right volumes
+  target: GTVp                     # laterality and distances to the plane
+  plane: all_starts
+  volume_region: slab 

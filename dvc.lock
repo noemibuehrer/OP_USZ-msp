@@ -1,0 +1,168 @@
+schema: '2.0'
+stages:
+  run-mspdetect:
+    cmd: "mspdetect run msp_pipeline/configs/config.yaml  \n"
+    deps:
+    - path: 
+        /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised
+      hash: md5
+      md5: d6f5b62683b0cb349d450f360a48e7a2.dir
+      size: 7620943884
+      nfiles: 948
+    - path: uv.lock
+      hash: md5
+      md5: 6b8707957c975e31260cbe826cafd567
+      size: 980611
+    params:
+      msp_pipeline/configs/config.yaml:
+        data:
+          root: 
+            /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised
+          patients:
+          image: image
+          structures:
+            GTVp: GTVp
+            Body:
+            - Body
+            - mask_BODY
+            Mandible:
+            - Mandible
+            - mask_Mandible
+            Spinal_Cord:
+            - Spinal Cord
+            - mask_SpinalCord
+        detection:
+          hu_range:
+          - 300
+          - 2800
+          crop:
+            reference: GTVp
+            slice_range:
+            mode: fixed_size
+            fixed_size: 20
+            include_mandible: false
+            lateral_extent_mm: 80
+            pad: 30
+          optimizer:
+            azimuth_deg:
+            - 0
+            - 8
+            polar_deg:
+            - 90
+            - 8
+            grid_steps: 10
+            n_starts: 10
+        metrics:
+          output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/metrics
+          structures:
+          - GTVp
+          - Body
+          - Spinal_Cord
+          - Mandible
+          target: GTVp
+          plane: all_starts
+          volume_region: slab
+        n_jobs: 8
+        output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/results
+        overwrite: false
+    outs:
+    - path: msp_pipeline/results
+      hash: md5
+      md5: c090aa0f4ca52a23d52e51230042d6a8.dir
+      size: 5272699
+      nfiles: 398
+  calculate-metrics:
+    cmd: "mspdetect metrics msp_pipeline/configs/config.yaml  \n"
+    deps:
+    - path: 
+        /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised
+      hash: md5
+      md5: d6f5b62683b0cb349d450f360a48e7a2.dir
+      size: 7620943884
+      nfiles: 948
+    - path: msp_pipeline/results
+      hash: md5
+      md5: c090aa0f4ca52a23d52e51230042d6a8.dir
+      size: 5272699
+      nfiles: 398
+    - path: uv.lock
+      hash: md5
+      md5: 6b8707957c975e31260cbe826cafd567
+      size: 980611
+    params:
+      msp_pipeline/configs/config.yaml:
+        data:
+          root: 
+            /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised
+          patients:
+          image: image
+          structures:
+            GTVp: GTVp
+            Body:
+            - Body
+            - mask_BODY
+            Mandible:
+            - Mandible
+            - mask_Mandible
+            Spinal_Cord:
+            - Spinal Cord
+            - mask_SpinalCord
+        detection:
+          hu_range:
+          - 300
+          - 2800
+          crop:
+            reference: GTVp
+            slice_range:
+            mode: fixed_size
+            fixed_size: 20
+            include_mandible: false
+            lateral_extent_mm: 80
+            pad: 30
+          optimizer:
+            azimuth_deg:
+            - 0
+            - 8
+            polar_deg:
+            - 90
+            - 8
+            grid_steps: 10
+            n_starts: 10
+        metrics:
+          output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/metrics
+          structures:
+          - GTVp
+          - Body
+          - Spinal_Cord
+          - Mandible
+          target: GTVp
+          plane: all_starts
+          volume_region: slab
+        n_jobs: 8
+        output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/results
+        overwrite: false
+    outs:
+    - path: msp_pipeline/metrics/metrics.csv
+      hash: md5
+      md5: 544b4c693195d64fed76d0ecef70cfe8
+      size: 579235
+    - path: msp_pipeline/metrics/metrics_failures.csv
+      hash: md5
+      md5: f1b3b99aba41a0e786b4140a22de7583
+      size: 15
+  export-first-start:
+    cmd: "python scripts/export_first_start.py msp_pipeline/metrics/metrics.csv msp_pipeline/metrics/metrics_first_start.csv\n"
+    deps:
+    - path: msp_pipeline/metrics/metrics.csv
+      hash: md5
+      md5: 544b4c693195d64fed76d0ecef70cfe8
+      size: 579235
+    - path: scripts/export_first_start.py
+      hash: md5
+      md5: c216136f346b2e15fcb750310ff496eb
+      size: 623
+    outs:
+    - path: msp_pipeline/metrics/metrics_first_start.csv
+      hash: md5
+      md5: 49cc58c50c5300be7538c8d2967a69b5
+      size: 49778

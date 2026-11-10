@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article below."
+title: "OP_USZ-msp: code for mid-sagittal plane detection pipeline in head and neck planning CTs"
+type: software
+license: MIT
+repository-code: https://github.com/noemibuehrer/OP_USZ-msp
+authors:
+  - family-names: Bührer
+    given-names: Noemi
+# TODO: fill in once the article is published
+preferred-citation:
+  type: article
+  title: "TODO: article title"
+  authors:
+    - family-names: Bührer
+      given-names: Noemi
+  journal: "TODO"
+  year: 2026

@@ -1,0 +1,37 @@
+stages:
+  run-mspdetect:
+    cmd: >
+      mspdetect run
+      msp_pipeline/configs/config.yaml  
+    deps:
+      - uv.lock
+      - /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised
+    params:
+      - msp_pipeline/configs/config.yaml:
+    outs:
+      - msp_pipeline/results
+  
+  calculate-metrics:
+    cmd: >
+      mspdetect metrics
+      msp_pipeline/configs/config.yaml  
+    deps:
+      - uv.lock
+      - /home/noemibuhrer/Datasets/OP_USZ/Patient_structures_clean_anonymised
+      - msp_pipeline/results
+    params:
+      - msp_pipeline/configs/config.yaml:
+    outs:
+      - msp_pipeline/metrics/metrics.csv
+      - msp_pipeline/metrics/metrics_failures.csv
+  
+  export-first-start:
+    cmd: >
+      python scripts/export_first_start.py
+      msp_pipeline/metrics/metrics.csv
+      msp_pipeline/metrics/metrics_first_start.csv
+    deps:
+      - scripts/export_first_start.py
+      - msp_pipeline/metrics/metrics.csv
+    outs:
+      - msp_pipeline/metrics/metrics_first_start.csv

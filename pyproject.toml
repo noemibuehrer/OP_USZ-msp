@@ -1,0 +1,25 @@
+[project]
+name = "OP_USZ-msp"
+version = "0.1.0"
+description = "Automatically detecting the midline from OPSCC planning CT scans."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dvc>=3.67.1",
+    "matplotlib>=3.10.9",
+    "mspdetect[viz]==0.2.0",
+    "pandas>=2.3.3",
+]
+
+[project.optional-dependencies]
+optional = [
+    "ipykernel>=7.3.0",
+    "ruff>=0.16.2",
+]
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+

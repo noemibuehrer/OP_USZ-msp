@@ -11,8 +11,8 @@ stages:
       nfiles: 948
     - path: uv.lock
       hash: md5
-      md5: 6b8707957c975e31260cbe826cafd567
-      size: 980611
+      md5: dae40faf17da990bfee57d6e6a50e14d
+      size: 980448
     params:
       msp_pipeline/configs/config.yaml:
         data:
@@ -53,7 +53,7 @@ stages:
             grid_steps: 10
             n_starts: 10
         metrics:
-          output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/metrics
+          output: ../metrics
           structures:
           - GTVp
           - Body
@@ -63,13 +63,13 @@ stages:
           plane: all_starts
           volume_region: slab
         n_jobs: 8
-        output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/results
+        output: ../results
         overwrite: false
     outs:
     - path: msp_pipeline/results
       hash: md5
-      md5: c090aa0f4ca52a23d52e51230042d6a8.dir
-      size: 5272699
+      md5: 228c349efb72c2ae70fb7630b4e3c68d.dir
+      size: 5270725
       nfiles: 398
   calculate-metrics:
     cmd: "mspdetect metrics msp_pipeline/configs/config.yaml  \n"
@@ -82,13 +82,13 @@ stages:
       nfiles: 948
     - path: msp_pipeline/results
       hash: md5
-      md5: c090aa0f4ca52a23d52e51230042d6a8.dir
-      size: 5272699
+      md5: 228c349efb72c2ae70fb7630b4e3c68d.dir
+      size: 5270725
       nfiles: 398
     - path: uv.lock
       hash: md5
-      md5: 6b8707957c975e31260cbe826cafd567
-      size: 980611
+      md5: dae40faf17da990bfee57d6e6a50e14d
+      size: 980448
     params:
       msp_pipeline/configs/config.yaml:
         data:
@@ -129,7 +129,7 @@ stages:
             grid_steps: 10
             n_starts: 10
         metrics:
-          output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/metrics
+          output: ../metrics
           structures:
           - GTVp
           - Body
@@ -139,7 +139,7 @@ stages:
           plane: all_starts
           volume_region: slab
         n_jobs: 8
-        output: /home/noemibuhrer/Projects/OP_USZ-msp/msp_pipeline/results
+        output: ../results
         overwrite: false
     outs:
     - path: msp_pipeline/metrics/metrics.csv

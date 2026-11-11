@@ -29,9 +29,9 @@ stages:
     cmd: >
       python scripts/export_first_start.py
       msp_pipeline/metrics/metrics.csv
-      msp_pipeline/metrics/metrics_first_start.csv
+      msp_pipeline/metrics/msp_features.csv
     deps:
       - scripts/export_first_start.py
       - msp_pipeline/metrics/metrics.csv
     outs:
-      - msp_pipeline/metrics/metrics_first_start.csv
+      - msp_pipeline/metrics/msp_features.csv

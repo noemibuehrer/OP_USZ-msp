@@ -151,7 +151,7 @@ stages:
       md5: f1b3b99aba41a0e786b4140a22de7583
       size: 15
   export-first-start:
-    cmd: "python scripts/export_first_start.py msp_pipeline/metrics/metrics.csv msp_pipeline/metrics/metrics_first_start.csv\n"
+    cmd: "python scripts/export_first_start.py msp_pipeline/metrics/metrics.csv msp_pipeline/metrics/msp_features.csv\n"
     deps:
     - path: msp_pipeline/metrics/metrics.csv
       hash: md5
@@ -162,7 +162,7 @@ stages:
       md5: c216136f346b2e15fcb750310ff496eb
       size: 623
     outs:
-    - path: msp_pipeline/metrics/metrics_first_start.csv
+    - path: msp_pipeline/metrics/msp_features.csv
       hash: md5
       md5: 49cc58c50c5300be7538c8d2967a69b5
       size: 49778

@@ -7,7 +7,7 @@ requires-python = ">=3.10"
 dependencies = [
     "dvc>=3.67.1",
     "matplotlib>=3.10.9",
-    "mspdetect[viz]==0.2.0",
+    "mspdetect[viz]==0.3.0",
     "pandas>=2.3.3",
 ]
 

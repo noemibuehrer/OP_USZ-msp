@@ -2285,7 +2285,7 @@ wheels = [
 
 [[package]]
 name = "mspdetect"
-version = "0.2.0"
+version = "0.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "nibabel" },
@@ -2299,9 +2299,9 @@ dependencies = [
     { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2f/85/714ba489b578a67a396f2346b3c5a789c9f9e4fa7f6c35d1c711c1a7c415/mspdetect-0.2.0.tar.gz", hash = "sha256:2ee820ec7f530ce8177e799af7435d3699c9864ff1a37c515aeda209ab2c80ba", size = 193971, upload-time = "2026-10-27T09:33:57.8Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/76/4b/ae1b836d70c30a7498324d9fdca04a1ef8cd5fd708e58d2699a7c2ee4413/mspdetect-0.3.0.tar.gz", hash = "sha256:0f3ff0ab55b65c65eda97d6a5f0aee34e9066bb5f80a138735d8781457e4c408", size = 217981, upload-time = "2026-11-17T15:33:47.727Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/c0/b118ea77df43818532b422e819cc67d84f284f97368fdf3b97af39e25ac5/mspdetect-0.2.0-py3-none-any.whl", hash = "sha256:d2edabda1606ba89eab2bb4560c63008372cf2425bea1fd07d0910ea8ac07f9e", size = 36678, upload-time = "2026-10-27T09:33:56.457Z" },
+    { url = "https://files.pythonhosted.org/packages/15/c6/aae6f6cc7226d66c0abe41475e509a539225c0f12cbd177f404d47fbbf02/mspdetect-0.3.0-py3-none-any.whl", hash = "sha256:2e3d765b8cdf99f9189b3061a213c104472fb7790b00fb7c127a182936f610fc", size = 36507, upload-time = "2026-11-17T15:33:46.279Z" },
 ]
 
 [package.optional-dependencies]
@@ -2829,7 +2829,7 @@ requires-dist = [
     { name = "dvc", specifier = ">=3.67.1" },
     { name = "ipykernel", marker = "extra == 'optional'", specifier = ">=7.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
-    { name = "mspdetect", extras = ["viz"], specifier = "==0.2.0" },
+    { name = "mspdetect", extras = ["viz"], specifier = "==0.3.0" },
     { name = "pandas", specifier = ">=2.3.3" },
     { name = "ruff", marker = "extra == 'optional'", specifier = ">=0.16.2" },
 ]
